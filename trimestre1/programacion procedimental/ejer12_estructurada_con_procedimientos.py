@@ -20,6 +20,16 @@ def mostrar_menu() -> None:
     5. Mostrar los elementos de la lista.
     0. Salir del programa.
     """)
+    
+
+def pedir_entero(mensaje: str) -> int:
+    while True:
+        try:
+            return int(input(mensaje))
+        except ValueError:
+            print('El valor introducido no es un número válido.')
+    
+    
 
 def anyadir_elemento() -> None:
     elem = input('Introduzca el elemento a añadir: ')
@@ -31,21 +41,17 @@ def mostrar_lista() -> None:
 def cambiar_elemento() -> None:
     mostrar_lista()
     try:
-        indice = int(input('Introduzca el índice del elemento a cambiar: '))
+        indice = pedir_entero('Introduzca el índice del elemento a cambiar: ')
         valor = input('Introduzca el nuevo valor del elemento: ')
         lista[indice] = valor
-    except ValueError:
-        print('El índice introducido no es número entero.')
     except IndexError:
         print('El índice no está dentro de los límites de la lista.')
 
 def eliminar_elemento() -> None:
     mostrar_lista()
     try:
-        indice = int(input('Introduzca el índice del elemento a borrar: '))
+        indice = pedir_entero('Introduzca el índice del elemento a borrar: ')
         del lista[indice]
-    except ValueError:
-        print('El índice introducido no es número entero.')
     except IndexError:
         print('El índice no está dentro de los límites de la lista.')
 
