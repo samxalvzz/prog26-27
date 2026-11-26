@@ -71,7 +71,7 @@ def normalizar_nombres(nombres: list[str]) -> list[str]:
     ["Ana López", "Jose Pérez"]
     """
     def limpiar(nombre: str) -> str:
-        ...
+        return " ".join(nombre.title().strip().split())
     res = []
     i = 0
     while i < len(nombres):
