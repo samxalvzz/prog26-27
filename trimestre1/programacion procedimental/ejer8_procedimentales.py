@@ -10,6 +10,24 @@ su diagonal secundaria
 """
 
 def es_cuadrada(matriz: list[list[int]]) -> bool:
+    """
+    Suma las diagonales de una matriz, si es cuadrada.
+
+    Args:
+        matriz (list[list[int]]): La matriz, almacenada por filas y
+            representada como una lista de filas, donde cada fila es una
+            lista de enteros.
+
+    Returns:
+        None: si la matriz es vacía o no es cuadrada.
+        tuple[int, int]: la suma de la diagonal principal y la secundaria,
+            en ese orden.
+
+    >>> analizar_diagonales([])
+    >>> analizar_diagonales([[1,2], [3, 4], [5, 6]])
+    >>> analizar_diagonales([[1, 2, 3], [4, 5, 6], [9, 8, 7]])
+    (13, 17) 
+    """
     num_filas = len(matriz)
     i = 0
     while i < num_filas:
@@ -24,8 +42,14 @@ def analizar_diagonales(matriz: list[list[int]]) -> None | tuple[int, int]:
         return None
     suma_principal, suma_secundaria = 0, 0
     i = 0
-    while i > len(matriz):
+    while i < len(matriz):  # <-- Cambiar '>' por '<'
         suma_principal += matriz[i][i]
-        suma_secundaria += matriz[i][-1 -i]
+        suma_secundaria += matriz[i][-1 - i]
         i += 1
     return (suma_principal, suma_secundaria)
+
+def test_analizar_diagonales():
+    assert analizar_diagonales([]) is None, "Matríz vacía"
+    assert analizar_diagonales([[1,2], [3, 4], [5, 6]]) is None, "Matríz cuadrada"
+    assert analizar_diagonales([[1, 2, 3], [4, 5, 6], [9, 8, 7]]) == (13, 17)
+
